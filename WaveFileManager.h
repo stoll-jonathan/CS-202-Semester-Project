@@ -7,9 +7,11 @@
 #include "wav_header.h"
 
 class WaveFileManager {
+private:
+    wav_header header;
+
 public:
     std::vector<float> soundData;
-    wav_header header;
 
     WaveFileManager() = default;
     std::string readFile(std::string);
