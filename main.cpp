@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <vector>
+#include "WaveFileManager.h"
 #include "wav_header.h"
 
 int main() {
+    WaveFileManager waveFile = WaveFileManager();
     std::string userInput, filename;
 
     START_MENU:
@@ -17,32 +20,21 @@ int main() {
         std::cin >> filename;
         std::cout << std::endl;
 
-        //try opening the file and send the metadata to the wav_header struct
-        wav_header header;
-        std::ifstream file(filename, std::ios::binary | std::ios::in);
-        //go back to start if the file can't be opened
-        if (file.fail()) { 
-            std::cout << "Error: " << filename << " could not be opened." << std::endl;
+        //try to open the file
+        std::string response = waveFile.readFile(filename);
+        if (response != "SUCCESS") {
+            std::cout << response << std::endl;
             goto START_MENU;
         }
-        else {
-            file.read((char*) &header, sizeof(header));
-            file.close();
-        }
-        //go back to start if the file isn't a wav file
-        if (strcmp(header.wave_header, "WAVE") == 0 || (header.num_channels != 1 && header.num_channels != 2)) {
-            std::cout << "Error: " << filename << " is not a WAV file." << std::endl;
-            goto START_MENU;
-        }
-        
+
 
         //display the metadata
         std::cout << "File Metadata" << std::endl;
         std::cout << "-------------" << std::endl;
         std::cout << "Filename:        " << filename << std::endl;
-        std::cout << "Sample Rate:     " << header.sample_rate << std::endl;
-        std::cout << "Bits Per Sample: " << header.bit_depth << std::endl;
-        std::cout << "Stereo/Mono:     " << ((header.num_channels == 1) ? "Mono" : "Stereo") << std::endl;
+        std::cout << "Sample Rate:     " << waveFile.getHeader().sample_rate << std::endl;
+        std::cout << "Bits Per Sample: " << waveFile.getHeader().bit_depth << std::endl;
+        std::cout << "Stereo/Mono:     " << ((waveFile.getHeader().num_channels == 1) ? "Mono" : "Stereo") << std::endl;
         std::cout << std::endl;
 
 
@@ -53,6 +45,7 @@ int main() {
         std::cout << "gain - adjust the gain" << std::endl;
         std::cout << "quit - quit the program" << std::endl;
         std::cin >> userInput;
+
 
         if (userInput == "quit")
             goto QUIT;
@@ -74,6 +67,7 @@ int main() {
             }
 
             //save the file
+            
         }
         //go back to start
         goto START_MENU;
@@ -84,7 +78,7 @@ int main() {
 
     QUIT:
     std::cout << "exiting..." << std::endl;
-    exit(1);
+    exit(0);
 
     return 0;
 }

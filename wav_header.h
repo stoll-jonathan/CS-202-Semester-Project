@@ -1,4 +1,4 @@
-//struct to hold metadata of wav file
+//struct to hold the header and metadata of a wav file
 #ifndef WAV_HEADER
 #define WAV_HEADER
 
@@ -20,7 +20,7 @@ typedef struct wav_header {
 
     //data
     char data_header[4];    //should be "data"
-    int num_data_bytes;         //num of bytes in data (num of samples * num_channels * sample byte size)
+    int num_data_bytes;     //num of bytes in data (num of samples * num_channels * sample byte size)
 } wav_header;
 
 #endif
