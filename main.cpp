@@ -37,6 +37,11 @@ int main() {
         std::cout << "Stereo/Mono:     " << ((waveFile.getHeader().num_channels == 1) ? "Mono" : "Stereo") << std::endl;
         std::cout << std::endl;
 
+        for (int i = 0; i < waveFile.soundData.size()/4; i++) {
+            std::cout << waveFile.soundData.at(i) << " ";
+        }
+        std::cout << std::endl;
+
 
         //PROCESSOR MENU
         std::cout << "Which processor would you like to run?" << std::endl;
@@ -67,7 +72,7 @@ int main() {
             }
 
             //save the file
-            
+
         }
         //go back to start
         goto START_MENU;
