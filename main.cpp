@@ -12,7 +12,7 @@ int main() {
     START_MENU:
     std::cout << "WAV Processor" << std::endl;
     std::cout << "-------------" << std::endl;
-    std::cout << "Welcome, enter \"file\" to continue or anything else to quit" << std::endl;
+    std::cout << "Welcome, enter \"file\" to continue or \"quit\" to quit" << std::endl;
     std::cin >> userInput;
 
     if (userInput == "file") {
@@ -44,6 +44,7 @@ int main() {
 
 
         //PROCESSOR MENU
+        PROCESSOR_MENU:
         std::cout << "Which processor would you like to run?" << std::endl;
         std::cout << "norm - normalize the audio levels" << std::endl;
         std::cout << "echo - add an echo effect" << std::endl;
@@ -52,33 +53,34 @@ int main() {
         std::cin >> userInput;
 
 
-        if (userInput == "quit")
-            goto QUIT;
-        else {
-            std::string outFilename;
-            std::cout << "Enter an output filename: ";
-            std::cin >> outFilename;
-            std::cout << std::endl;
-        
-            //run the processors
-            if (userInput == "norm") {
-
-            }
-            else if (userInput == "echo") {
-
-            }
-            else if (userInput == "gain") {
-
-            }
-
-            //save the file
+        //run the processors
+        if (userInput == "norm") {
 
         }
+        else if (userInput == "echo") {
+
+        }
+        else if (userInput == "gain") {
+
+        }
+        else if (userInput == "quit") {
+            goto QUIT;
+        }
+        else {
+            std::cout << "Error: please enter a valid input" << std::endl;
+            goto PROCESSOR_MENU;
+        }
+
+
         //go back to start
         goto START_MENU;
     }
-    else {
+    else if (userInput == "quit") {
         goto QUIT;
+    }
+    else {
+        std::cout << "Error: please enter a valid input" << std::endl;
+        goto START_MENU;
     }
 
     QUIT:
