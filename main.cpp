@@ -57,6 +57,7 @@ int main() {
             std::string outputFileName;
             std::cout << "Enter an output filename:" << std::endl;
             std::cin >> outputFileName;
+            std::cout << std::endl;
 
             //ensure the file ends with ".wav"
             if (outputFileName.substr(outputFileName.size() - 4) != ".wav")
