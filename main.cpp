@@ -1,3 +1,12 @@
+/** @file main.cpp*/
+/*
+CS 202 Semester Project
+Jonathan Stoll
+Jonathan Chi
+*/
+
+
+
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -6,6 +15,12 @@
 #include "wav_header.h"
 #include "Processors.h"
 
+/**
+ *@brief The main contains all the code for user interaction
+ *
+ * This displays the main menu and takes input from the user.
+ *
+ */
 int main() {
     WaveFileManager waveFile = WaveFileManager();
     std::string userInput, filename;
@@ -21,7 +36,10 @@ int main() {
         std::cin >> filename;
         std::cout << std::endl;
 
-        //try to open the file
+        /**
+        * @brief Line 43: Tries to open the file
+        * 
+        */
         std::string response = waveFile.readFile(filename);
         if (response != "SUCCESS") {
             std::cout << response << std::endl;
@@ -29,7 +47,12 @@ int main() {
         }
 
 
-        //display the metadata
+        /**
+        * @brief Line 56: Displays the metadata
+        * 
+        * This part displays the file's name, sample rate, bits per sample, and whether the file is stereo or mono
+        */
+        
         std::cout << "File Metadata" << std::endl;
         std::cout << "-------------" << std::endl;
         std::cout << "Filename:        " << filename << std::endl;
@@ -39,7 +62,13 @@ int main() {
         std::cout << std::endl;
 
 
-        //PROCESSOR MENU
+        /**
+        *
+        * @brief Line 72: The processor menu
+        *
+        * Asks the user which processor they would like to run between normalizing audio levels, adding an echo, adjusting the gain, or quitting the program and takes the input of the user
+        *
+        */
         PROCESSOR_MENU:
         std::cout << "Which processor would you like to run?" << std::endl;
         std::cout << "norm - normalize the audio levels" << std::endl;
@@ -49,7 +78,11 @@ int main() {
         std::cin >> userInput;
 
 
-        //run the processors
+        /**
+        * @brief Line 86: Runs the processor and outputs savefile
+        * 
+        * Runs the processor that the user has selected and outputs the save file with the name the user has input, it will also print out an error message if they input a non number
+        */
         if (userInput == "quit") {
             goto QUIT;
         }
@@ -57,9 +90,10 @@ int main() {
             std::string outputFileName;
             std::cout << "Enter an output filename:" << std::endl;
             std::cin >> outputFileName;
-            std::cout << std::endl;
 
-            //ensure the file ends with ".wav"
+            /**
+            * @brief Line 97: Ensures the file ends with ".wav"
+            */
             if (outputFileName.substr(outputFileName.size() - 4) != ".wav")
                 outputFileName.append(".wav");
             
@@ -88,6 +122,7 @@ int main() {
                     goto GAIN_MENU;
                 }
 
+                std::cout << "Processing, this may take a while..." << std::endl;
                 Processors::addEcho(waveFile, outputFileName, scalingFactor, delay);
             }
             else if (userInput == "gain") {
@@ -110,17 +145,24 @@ int main() {
             }
         }
         
-        //go back to start
+        /**
+        * @brief Line 150: Sends user back to start
+        */
         goto START_MENU;
     }
     else if (userInput == "quit") {
+    	/**
+        * @brief Line 156: Exits the program if user enters "quit"
+        */
         goto QUIT;
     }
     else {
         std::cout << "Error: please enter a valid input" << std::endl;
         goto START_MENU;
     }
-
+	/**
+     * @brief Line 165: Exits program
+     */
     QUIT:
     std::cout << "exiting..." << std::endl;
     exit(0);

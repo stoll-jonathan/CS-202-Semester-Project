@@ -1,7 +1,11 @@
-//struct to hold the header and metadata of a wav file
+/** @file wav_header.h*/
 #ifndef WAV_HEADER
 #define WAV_HEADER
 
+/**
+ *@brief Struct of wavHeader 
+ * A struct to hold the header and metadata of a wav file
+ */
 typedef struct wav_header {
     //riff header
     char riff_header[4];    //should be "RIFF"
