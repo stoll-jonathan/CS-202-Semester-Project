@@ -11,7 +11,7 @@ private:
 public:
     static void normalize(WaveFileManager, std::string);
     static void addEcho(WaveFileManager, std::string);
-    static void adjustGain(WaveFileManager, std::string);
+    static void adjustGain(WaveFileManager, std::string, float);
 };
 
 #endif

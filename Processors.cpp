@@ -1,23 +1,60 @@
 #include "Processors.h"
 #include <algorithm>
 
-
-//TODO: edit header metadata after you process it
-
-
 //normalizes the audio and calls saveFile
 void Processors::normalize(WaveFileManager inputFile, std::string outFileName) {
+    const int MAX_8BIT = 255, MAX_16BIT = 32678;
+    std::vector<float> newData = inputFile.getSoundData();
+
+    //find the maximum value in the soundData vector
+    auto maxLocation = std::max_element(newData.begin(), newData.end(), abs_compare);
+    float maxValue = *maxLocation;
+
+    if (inputFile.getHeader().bit_depth == 8) {
+        unsigned char* buffer = new unsigned char[inputFile.getHeader().num_data_bytes];
+
+        //normalize the sound data and put it in a buffer
+        for (int i = 0; i < newData.size(); i++) {
+            newData[i] = newData[i] / maxValue;
+            buffer[i] = (char)(newData[i] * MAX_8BIT);
+        }
+    }
+    else if (inputFile.getHeader().bit_depth == 16) {
+        short* buffer = new short[inputFile.getHeader().num_data_bytes];
+
+        //normalize the sound data and put it in a buffer
+        for (int i = 0; i < newData.size(); i++) {
+            newData[i] = newData[i] / maxValue;
+            buffer[i] = (short)(newData[i] * MAX_16BIT);
+        }
+    }
+
     saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
 }
 
 //adds an echo effect and calls saveFile
 void Processors::addEcho(WaveFileManager inputFile, std::string outFileName) {
-    saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
+    std::vector<float> newData = inputFile.getSoundData();
+
+    //TODO: edit header metadata after you process it
+
+    WaveFileManager newFile = WaveFileManager(inputFile.getHeader(), newData);
+    normalize(newFile, outFileName);
+    //saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
 }
 
-//adjusts the gain and calls saveFile
-void Processors::adjustGain(WaveFileManager inputFile, std::string outFileName) {
-    saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
+//adjusts the gain and calls normalize which calls saveFile
+void Processors::adjustGain(WaveFileManager inputFile, std::string outFileName, float scalingFactor) {
+    std::vector<float> newData = inputFile.getSoundData();
+
+    //multiply each sample by the given scaling factor
+    for (int i = 0; i < newData.size(); i++) {
+        newData[i] *= scalingFactor;
+    }
+
+    WaveFileManager newFile = WaveFileManager(inputFile.getHeader(), newData);
+    normalize(newFile, outFileName);
+    //saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
 }
 
 //compares the absolute value of two floats

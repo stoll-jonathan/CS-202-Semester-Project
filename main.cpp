@@ -70,7 +70,18 @@ int main() {
                 Processors::addEcho(waveFile, outputFileName);
             }
             else if (userInput == "gain") {
-                Processors::adjustGain(waveFile, outputFileName);
+                GAIN_MENU:
+                float scalingFactor;
+                std::cout << "Enter an value to scale by:" << std::endl;
+                std::cin >> scalingFactor;
+                std::cout << std::endl;
+
+                if (std::cin.fail()) {
+                    std::cout << "Error: please enter a number" << std::endl;
+                    goto GAIN_MENU;
+                }
+
+                Processors::adjustGain(waveFile, outputFileName, scalingFactor);
             }
             else {
                 std::cout << "Error: please enter a valid input" << std::endl;
