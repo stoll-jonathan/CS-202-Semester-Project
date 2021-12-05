@@ -1,5 +1,6 @@
 #include <fstream>
 #include <string.h>
+#include <iostream>
 #include "WaveFileManager.h"
 #include "wav_header.h"
 
@@ -35,6 +36,10 @@ std::string WaveFileManager::readFile(std::string filename) {
 
 wav_header WaveFileManager::getHeader() {
     return header;
+}
+
+std::vector<float> WaveFileManager::getSoundData() {
+    return soundData;
 }
 
 //read the data into a buffer, then transfer that data to the soundData vector and save it as a float

@@ -14,16 +14,16 @@ private:
     const int MAX_8BIT = 255, MAX_16BIT = 32678;
 
     wav_header header;
+    std::vector<float> soundData;
     void fillVector8Bit(std::ifstream &);
     void fillVector16Bit(std::ifstream &);
 
 public:
-    std::vector<float> soundData;
-
     WaveFileManager() = default;
     std::string readFile(std::string);
     wav_header getHeader();
-    
+    std::vector<float> getSoundData();
+    void saveFile(std::string);
 };
 
 #endif

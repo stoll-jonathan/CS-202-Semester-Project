@@ -4,6 +4,7 @@
 #include <vector>
 #include "WaveFileManager.h"
 #include "wav_header.h"
+#include "Processors.h"
 
 int main() {
     WaveFileManager waveFile = WaveFileManager();
@@ -37,11 +38,6 @@ int main() {
         std::cout << "Stereo/Mono:     " << ((waveFile.getHeader().num_channels == 1) ? "Mono" : "Stereo") << std::endl;
         std::cout << std::endl;
 
-        for (int i = 0; i < waveFile.soundData.size()/4; i++) {
-            std::cout << waveFile.soundData.at(i) << " ";
-        }
-        std::cout << std::endl;
-
 
         //PROCESSOR MENU
         PROCESSOR_MENU:
@@ -54,24 +50,34 @@ int main() {
 
 
         //run the processors
-        if (userInput == "norm") {
-
-        }
-        else if (userInput == "echo") {
-
-        }
-        else if (userInput == "gain") {
-
-        }
-        else if (userInput == "quit") {
+        if (userInput == "quit") {
             goto QUIT;
         }
         else {
-            std::cout << "Error: please enter a valid input" << std::endl;
-            goto PROCESSOR_MENU;
+            std::string outputFileName;
+            std::cout << "Enter an output filename:" << std::endl;
+            std::cin >> outputFileName;
+
+            //ensure the file ends with ".wav"
+            if (outputFileName.substr(outputFileName.size() - 4) != ".wav")
+                outputFileName.append(".wav");
+            
+            //these processors will save the file when they are done
+            if (userInput == "norm") {
+                Processors::normalize(waveFile, outputFileName);
+            }
+            else if (userInput == "echo") {
+                Processors::addEcho(waveFile, outputFileName);
+            }
+            else if (userInput == "gain") {
+                Processors::adjustGain(waveFile, outputFileName);
+            }
+            else {
+                std::cout << "Error: please enter a valid input" << std::endl;
+                goto PROCESSOR_MENU;
+            }
         }
-
-
+        
         //go back to start
         goto START_MENU;
     }
