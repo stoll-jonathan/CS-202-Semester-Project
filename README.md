@@ -8,7 +8,7 @@
  This is a basic level project.
 
  @section uml UML Diagram
- ![A UML diagram that shows the basic design](UML-Diagram.png?raw=true "UML Diagram")
+ ![A UML diagram that shows the basic design](https://github.com/stoll-jonathan/CS-202-Semester-Project/blob/master/UML-diagram.png?raw=true)
  
  @section issues Program Issues
  There were a few minor technical problems, the biggest one being when attempting to run an audio file Jonathan C's VM would crash. Other than that there weren't any other issues that couldn't be resolved, and the program functions as it should.

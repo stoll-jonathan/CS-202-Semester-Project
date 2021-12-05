@@ -1,0 +1,103 @@
+\hypertarget{classWaveFileManager}{}\section{Wave\+File\+Manager Class Reference}
+\label{classWaveFileManager}\index{Wave\+File\+Manager@{Wave\+File\+Manager}}
+
+
+Manages the wave file.  
+
+
+
+
+{\ttfamily \#include $<$Wave\+File\+Manager.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWaveFileManager_a2a862ef3321ffd9e68738d5e6f453f0e}\label{classWaveFileManager_a2a862ef3321ffd9e68738d5e6f453f0e}} 
+\hyperlink{classWaveFileManager_a2a862ef3321ffd9e68738d5e6f453f0e}{Wave\+File\+Manager} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor Default constructor for \hyperlink{classWaveFileManager}{Wave\+File\+Manager}. \end{DoxyCompactList}\item 
+\hyperlink{classWaveFileManager_ae729ebd19c43beb6779abe347a501029}{Wave\+File\+Manager} (\hyperlink{structwav__header}{wav\+\_\+header} head, std\+::vector$<$ float $>$ data)
+\begin{DoxyCompactList}\small\item\em Construct new \hyperlink{classWaveFileManager}{Wave\+File\+Manager}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWaveFileManager_a877855cb21b018f869e8416d2be57020}\label{classWaveFileManager_a877855cb21b018f869e8416d2be57020}} 
+std\+::string \hyperlink{classWaveFileManager_a877855cb21b018f869e8416d2be57020}{read\+File} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Opens the file and send the metadata to the \hyperlink{structwav__header}{wav\+\_\+header} struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWaveFileManager_aa0a65c65925e1074cb8ad2d35734f4fc}\label{classWaveFileManager_aa0a65c65925e1074cb8ad2d35734f4fc}} 
+void {\bfseries save\+File} (std\+::string)
+\item 
+\mbox{\Hypertarget{classWaveFileManager_a5bfeeb7e6d17c606bdafe7a5b5641530}\label{classWaveFileManager_a5bfeeb7e6d17c606bdafe7a5b5641530}} 
+\hyperlink{structwav__header}{wav\+\_\+header} \hyperlink{classWaveFileManager_a5bfeeb7e6d17c606bdafe7a5b5641530}{get\+Header} ()
+\begin{DoxyCompactList}\small\item\em Returns header. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \hyperlink{classWaveFileManager_a3150c616dc01044360d4a5361392cb23}{get\+Sound\+Data} ()
+\item 
+{\footnotesize template$<$typename buffer\+Type $>$ }\\void \hyperlink{classWaveFileManager_a8bda282f8ec75af81b27d53b3d4b6da2}{fill\+Vector} (std\+::ifstream \&file, buffer\+Type buffer, const int M\+A\+X\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+V\+A\+L\+UE)
+\begin{DoxyCompactList}\small\item\em Reads data into sound\+Data vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWaveFileManager_adac6ed307bd9b308ae768d1f06afdb76}\label{classWaveFileManager_adac6ed307bd9b308ae768d1f06afdb76}} 
+std\+::vector$<$ float $>$ \hyperlink{classWaveFileManager_adac6ed307bd9b308ae768d1f06afdb76}{sound\+Data}
+\begin{DoxyCompactList}\small\item\em Float vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manages the wave file. 
+
+Grabs data from a wave file and puts data into the \hyperlink{structwav__header}{wav\+\_\+header} struct 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWaveFileManager_ae729ebd19c43beb6779abe347a501029}\label{classWaveFileManager_ae729ebd19c43beb6779abe347a501029}} 
+\index{Wave\+File\+Manager@{Wave\+File\+Manager}!Wave\+File\+Manager@{Wave\+File\+Manager}}
+\index{Wave\+File\+Manager@{Wave\+File\+Manager}!Wave\+File\+Manager@{Wave\+File\+Manager}}
+\subsubsection{\texorpdfstring{Wave\+File\+Manager()}{WaveFileManager()}}
+{\footnotesize\ttfamily Wave\+File\+Manager\+::\+Wave\+File\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{structwav__header}{wav\+\_\+header}}]{head,  }\item[{std\+::vector$<$ float $>$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct new \hyperlink{classWaveFileManager}{Wave\+File\+Manager}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & New \hyperlink{structwav__header}{wav\+\_\+header} object\\
+\hline
+{\em data} & Vector to hold audio from wav file \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classWaveFileManager_a8bda282f8ec75af81b27d53b3d4b6da2}\label{classWaveFileManager_a8bda282f8ec75af81b27d53b3d4b6da2}} 
+\index{Wave\+File\+Manager@{Wave\+File\+Manager}!fill\+Vector@{fill\+Vector}}
+\index{fill\+Vector@{fill\+Vector}!Wave\+File\+Manager@{Wave\+File\+Manager}}
+\subsubsection{\texorpdfstring{fill\+Vector()}{fillVector()}}
+{\footnotesize\ttfamily template$<$typename buffer\+Type $>$ \\
+void Wave\+File\+Manager\+::fill\+Vector (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file,  }\item[{buffer\+Type}]{buffer,  }\item[{const int}]{M\+A\+X\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+V\+A\+L\+UE }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads data into sound\+Data vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em buffer\+Type} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \&file} & \\
+\hline
+{\em buffer} & \\
+\hline
+{\em M\+A\+X\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+V\+A\+L\+UE} & Reads the data into a buffer, then transfer that data to the sound\+Data vector and save each sample as a float \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWaveFileManager_a3150c616dc01044360d4a5361392cb23}\label{classWaveFileManager_a3150c616dc01044360d4a5361392cb23}} 
+\index{Wave\+File\+Manager@{Wave\+File\+Manager}!get\+Sound\+Data@{get\+Sound\+Data}}
+\index{get\+Sound\+Data@{get\+Sound\+Data}!Wave\+File\+Manager@{Wave\+File\+Manager}}
+\subsubsection{\texorpdfstring{get\+Sound\+Data()}{getSoundData()}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ Wave\+File\+Manager\+::get\+Sound\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns sound\+Data 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{WaveFileManager_8h}{Wave\+File\+Manager.\+h}\item 
+Wave\+File\+Manager.\+cpp\end{DoxyCompactItemize}

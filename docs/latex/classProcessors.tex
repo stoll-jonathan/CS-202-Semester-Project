@@ -1,0 +1,91 @@
+\hypertarget{classProcessors}{}\section{Processors Class Reference}
+\label{classProcessors}\index{Processors@{Processors}}
+
+
+The \hyperlink{classProcessors}{Processors} class is used to modify a wav file.  
+
+
+
+
+{\ttfamily \#include $<$Processors.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classProcessors_ae9eab62163738617ef294db9a2333a98}{normalize} (\hyperlink{classWaveFileManager}{Wave\+File\+Manager} input\+File, const std\+::string out\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Normalizes audio of wav file. \end{DoxyCompactList}\item 
+static void \hyperlink{classProcessors_afb0d287e5063d3a9d9d831d65f65fb90}{add\+Echo} (\hyperlink{classWaveFileManager}{Wave\+File\+Manager} input\+File, const std\+::string out\+File\+Name, const float gain, const int delay)
+\begin{DoxyCompactList}\small\item\em Adds echo to a wav file. \end{DoxyCompactList}\item 
+static void \hyperlink{classProcessors_a25d4b6ea1877cf06ec2dac421180e3ff}{adjust\+Gain} (\hyperlink{classWaveFileManager}{Wave\+File\+Manager} input\+File, const std\+::string out\+File\+Name, const float scaling\+Factor)
+\begin{DoxyCompactList}\small\item\em Adds echo to a wav file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classProcessors}{Processors} class is used to modify a wav file. 
+
+The \hyperlink{classProcessors}{Processors} class normalizes, adds echo, and adjusts gain to wav files 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classProcessors_afb0d287e5063d3a9d9d831d65f65fb90}\label{classProcessors_afb0d287e5063d3a9d9d831d65f65fb90}} 
+\index{Processors@{Processors}!add\+Echo@{add\+Echo}}
+\index{add\+Echo@{add\+Echo}!Processors@{Processors}}
+\subsubsection{\texorpdfstring{add\+Echo()}{addEcho()}}
+{\footnotesize\ttfamily void Processors\+::add\+Echo (\begin{DoxyParamCaption}\item[{\hyperlink{classWaveFileManager}{Wave\+File\+Manager}}]{input\+File,  }\item[{const std\+::string}]{out\+File\+Name,  }\item[{const float}]{gain,  }\item[{const int}]{delay }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Adds echo to a wav file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & \\
+\hline
+{\em out\+File\+Name} & The name of the file to be output\\
+\hline
+{\em gain} & Reduces amplitude for the sound\\
+\hline
+{\em delay} & Gives time delay for the echo\\
+\hline
+\end{DoxyParams}
+Takes in a wav file then adds echo with the options to adjust gain and delay for the echo, it then outputs a file with the requested name \mbox{\Hypertarget{classProcessors_a25d4b6ea1877cf06ec2dac421180e3ff}\label{classProcessors_a25d4b6ea1877cf06ec2dac421180e3ff}} 
+\index{Processors@{Processors}!adjust\+Gain@{adjust\+Gain}}
+\index{adjust\+Gain@{adjust\+Gain}!Processors@{Processors}}
+\subsubsection{\texorpdfstring{adjust\+Gain()}{adjustGain()}}
+{\footnotesize\ttfamily void Processors\+::adjust\+Gain (\begin{DoxyParamCaption}\item[{\hyperlink{classWaveFileManager}{Wave\+File\+Manager}}]{input\+File,  }\item[{const std\+::string}]{out\+File\+Name,  }\item[{const float}]{scaling\+Factor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Adds echo to a wav file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & \\
+\hline
+{\em out\+File\+Name} & The name of the file to be output\\
+\hline
+{\em scaling\+Factor} & The number by which the amplitude is multiplied\\
+\hline
+\end{DoxyParams}
+Takes in a wav file then adjusts the gain, it then outputs it with the requested name \mbox{\Hypertarget{classProcessors_ae9eab62163738617ef294db9a2333a98}\label{classProcessors_ae9eab62163738617ef294db9a2333a98}} 
+\index{Processors@{Processors}!normalize@{normalize}}
+\index{normalize@{normalize}!Processors@{Processors}}
+\subsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily void Processors\+::normalize (\begin{DoxyParamCaption}\item[{\hyperlink{classWaveFileManager}{Wave\+File\+Manager}}]{input\+File,  }\item[{const std\+::string}]{out\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Normalizes audio of wav file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & \\
+\hline
+{\em out\+File\+Name} & The name of the file to be output\\
+\hline
+\end{DoxyParams}
+Takes in a wav file then normalizes it then outputs it with the requested name 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Processors_8h}{Processors.\+h}\item 
+Processors.\+cpp\end{DoxyCompactItemize}
