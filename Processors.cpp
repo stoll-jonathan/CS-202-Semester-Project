@@ -2,7 +2,7 @@
 #include <algorithm>
 
 //normalizes the audio and calls saveFile
-void Processors::normalize(WaveFileManager inputFile, std::string outFileName) {
+void Processors::normalize(WaveFileManager inputFile, const std::string outFileName) {
     const int MAX_8BIT = 255, MAX_16BIT = 32678;
     std::vector<float> newData = inputFile.getSoundData();
 
@@ -33,18 +33,24 @@ void Processors::normalize(WaveFileManager inputFile, std::string outFileName) {
 }
 
 //adds an echo effect and calls saveFile
-void Processors::addEcho(WaveFileManager inputFile, std::string outFileName) {
-    std::vector<float> newData = inputFile.getSoundData();
-
-    //TODO: edit header metadata after you process it
+void Processors::addEcho(WaveFileManager inputFile, const std::string outFileName, const float gain, const int delay) {
+    std::vector<float> newData;
+    newData.reserve(inputFile.getSoundData().size());
+    for (int i = 0; i < inputFile.getSoundData().size(); i++) {
+        if (i > delay) {
+            newData.push_back(inputFile.getSoundData()[i] + gain*newData[i - delay]);
+        }
+        else {
+            newData.push_back(inputFile.getSoundData()[i]);
+        }
+    }
 
     WaveFileManager newFile = WaveFileManager(inputFile.getHeader(), newData);
     normalize(newFile, outFileName);
-    //saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
 }
 
 //adjusts the gain and calls normalize which calls saveFile
-void Processors::adjustGain(WaveFileManager inputFile, std::string outFileName, float scalingFactor) {
+void Processors::adjustGain(WaveFileManager inputFile, const std::string outFileName, const float scalingFactor) {
     std::vector<float> newData = inputFile.getSoundData();
 
     //multiply each sample by the given scaling factor
@@ -54,7 +60,6 @@ void Processors::adjustGain(WaveFileManager inputFile, std::string outFileName, 
 
     WaveFileManager newFile = WaveFileManager(inputFile.getHeader(), newData);
     normalize(newFile, outFileName);
-    //saveFile(inputFile.getHeader(), inputFile.getSoundData(), outFileName);
 }
 
 //compares the absolute value of two floats
